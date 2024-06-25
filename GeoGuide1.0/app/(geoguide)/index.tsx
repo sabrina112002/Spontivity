@@ -1,103 +1,74 @@
-import {View, Text, StyleSheet, Pressable} from "react-native";
+import React, {useEffect, useState} from 'react';
+import {View, Text, StyleSheet, Pressable, FlatList, ActivityIndicator} from 'react-native';
 import {router} from "expo-router";
-export default function HomePage(){
-    return(
-        <View style={styles.container}>
-            <Text>HomeScreen</Text>
-            <Pressable onPress={()=>router.push("1")}>
-                <Text>Press me to see the Details of your selected Country!</Text>
-            </Pressable>
-        </View>
-    )
-}
 
-interface Country {
-    name: { common: string };
-    capital: string[];
-    languages: { [key: string]: string };
-    currencies: { [key: string]: { name: string } };
-    idd: { root: string; suffixes: string[] };
-}
+type Country = {
+    cca3: string,
+    name: { common: string },
+    capital: string[],
+    region: string,
+    subregion: string,
+    population: number
+};
 
-function App() {
-    const [country, setCountry] = useState<string>('');
-    const [countryData, setCountryData] = useState<Country | null>(null);
-    const [savedCountries, setSavedCountries] = useState<Country[]>([]);
+export default function HomePage() {
+    const [countries, setCountries] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setCountry(event.target.value);
-    };
+    useEffect(() => {
+        // Fetch the countries data from the API
+        fetch('https://restcountries.com/v3.1/all')
+            .then(response => response.json())
+            .then(data => {
+                setCountries(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error(error);
+                setLoading(false);
+            });
+    }, []);
 
-    const handleSearch = async () => {
-        if (country) {
-            try {
-                const response = await fetch(`https://restcountries.com/v3.1/name/${country}`);
-                const data: Country[] = await response.json();
-                setCountryData(data[0]);
-            } catch (error) {
-                console.error('Error fetching country data:', error);
-            }
-        }
-    };
+    const renderItem = ({ item }) => (
+        <Pressable onPress={() => router.push(`1`)}>
+            <Text style={styles.countryName}>{item.name.common}</Text>
+        </Pressable>
+    );
 
-    const handleSave = () => {
-        if (countryData) {
-            const savedCountries: Country[] = JSON.parse(localStorage.getItem('savedCountries') || '[]');
-            savedCountries.push(countryData);
-            localStorage.setItem('savedCountries', JSON.stringify(savedCountries));
-        }
-    };
-
-    const handleShowSaved = () => {
-        const savedCountries: Country[] = JSON.parse(localStorage.getItem('savedCountries') || '[]');
-        setSavedCountries(savedCountries);
-    };
+    if (loading) {
+        return (
+            <View style={styles.container}>
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+        );
+    }
 
     return (
-        <div className="App">
-            <h1>GEO GUIDE</h1>
-            <input
-                type="text"
-                value={country}
-                onChange={handleInputChange}
-                placeholder="Land eingeben"
+        <View style={styles.container}>
+            <Text style={styles.header}>Countries List</Text>
+            <FlatList
+                data={countries}
+                keyExtractor={item => item.cca3}
+                renderItem={renderItem}
             />
-            <button onClick={handleSearch}>Suchen</button>
-            {countryData && (
-                <div>
-                    <h2>{countryData.name.common}</h2>
-                    <p>Hauptstadt: {countryData.capital.join(', ')}</p>
-                    <p>Sprache: {Object.values(countryData.languages).join(', ')}</p>
-                    <p>Währung: {Object.values(countryData.currencies).map(currency => currency.name).join(', ')}</p>
-                    <p>Ländervorwahl: +{countryData.idd.root}{countryData.idd.suffixes[0]}</p>
-                    <button onClick={handleSave}>Speichern</button>
-                </div>
-            )}
-            <button onClick={handleShowSaved}>Gespeicherte Länder anzeigen</button>
-            {savedCountries.length > 0 && (
-                <div>
-                    <h2>Gespeicherte Länder</h2>
-                    {savedCountries.map((savedCountry, index) => (
-                        <div key={index}>
-                            <h3>{savedCountry.name.common}</h3>
-                            <p>Hauptstadt: {savedCountry.capital.join(', ')}</p>
-                            <p>Sprache: {Object.values(savedCountry.languages).join(', ')}</p>
-                            <p>Währung: {Object.values(savedCountry.currencies).map(currency => currency.name).join(', ')}</p>
-                            <p>Ländervorwahl: +{savedCountry.idd.root}{savedCountry.idd.suffixes[0]}</p>
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
+        </View>
     );
 }
-
-export default App;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
-    }
+        alignItems: 'center',
+        padding: 16,
+    },
+    header: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 16,
+    },
+    countryName: {
+        fontSize: 18,
+        padding: 10,
+    },
 });
