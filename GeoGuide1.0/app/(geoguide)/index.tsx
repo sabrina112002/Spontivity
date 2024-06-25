@@ -1,5 +1,6 @@
 import {View, Text, StyleSheet, Pressable} from "react-native";
 import {router} from "expo-router";
+import {ChangeEvent, useState} from "react";
 export default function HomePage(){
     return(
         <View style={styles.container}>
@@ -92,7 +93,7 @@ function App() {
     );
 }
 
-export default App;
+
 
 const styles = StyleSheet.create({
     container: {
