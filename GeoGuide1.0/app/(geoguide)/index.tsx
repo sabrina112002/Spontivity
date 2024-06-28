@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Pressable, FlatList, ActivityIndicator} from 'react-native';
 import {router} from "expo-router";
 
-
-
 export default function HomePage() {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
