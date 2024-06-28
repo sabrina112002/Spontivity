@@ -2,14 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Pressable, FlatList, ActivityIndicator} from 'react-native';
 import {router} from "expo-router";
 
-type Country = {
-    cca3: string,
-    name: { common: string },
-    capital: string[],
-    region: string,
-    subregion: string,
-    population: number
-};
+
 
 export default function HomePage() {
     const [countries, setCountries] = useState([]);
