@@ -22,7 +22,8 @@ export default function HomePage() {
             });
     }, []);
 
-    const renderItem = ({ item }) => (
+    // @ts-ignore
+    const renderItem = ({item}) => (
         <Pressable onPress={() => router.push(`1`)}>
             <Text style={styles.countryName}>{item.name.common}</Text>
         </Pressable>
