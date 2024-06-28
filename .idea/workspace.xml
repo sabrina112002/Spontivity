@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c11c3d57-afcb-4a12-b38a-b599222a99f9" name="Changes" comment="Test 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeoGuide1.0/app/profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/app/profile.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +18,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -37,6 +41,8 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/katharinakandelhart/MOB04/Spontivity/GeoGuide1.0/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -51,6 +57,9 @@
       <workItem from="1718814349960" duration="2098000" />
       <workItem from="1718957264535" duration="2482000" />
       <workItem from="1719229584856" duration="2631000" />
+      <workItem from="1719307875491" duration="3854000" />
+      <workItem from="1719599851685" duration="17000" />
+      <workItem from="1719599881965" duration="1690000" />
     </task>
     <task id="LOCAL-00001" summary="Headline changed">
       <option name="closed" value="true" />
@@ -92,7 +101,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718958171066</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Testfiles deleted">
+      <option name="closed" value="true" />
+      <created>1719308131174</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1719308131174</updated>
+    </task>
+    <task id="LOCAL-00007" summary="integrate interface Country and function App">
+      <option name="closed" value="true" />
+      <created>1719317694098</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1719317694098</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,6 +138,8 @@
     <MESSAGE value="Headline changed" />
     <MESSAGE value="Test" />
     <MESSAGE value="Test 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test 2" />
+    <MESSAGE value="Testfiles deleted" />
+    <MESSAGE value="integrate interface Country and function App" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrate interface Country and function App" />
   </component>
 </project>

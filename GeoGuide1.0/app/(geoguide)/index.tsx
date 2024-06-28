@@ -13,7 +13,9 @@ export default function HomePage() {
         fetch('https://restcountries.com/v3.1/all')
             .then(response => response.json())
             .then(data => {
-                setCountries(data);
+                // Sort the countries alphabetically by their common name
+                const sortedCountries = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+                setCountries(sortedCountries);
                 setLoading(false);
             })
             .catch(error => {
