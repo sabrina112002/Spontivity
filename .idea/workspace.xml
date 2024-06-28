@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c11c3d57-afcb-4a12-b38a-b599222a99f9" name="Changes" comment="Länder alphabetisch sortiert">
+    <list default="true" id="c11c3d57-afcb-4a12-b38a-b599222a99f9" name="Changes" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +59,7 @@
       <workItem from="1719229584856" duration="2631000" />
       <workItem from="1719307875491" duration="3854000" />
       <workItem from="1719599851685" duration="17000" />
-      <workItem from="1719599881965" duration="3036000" />
+      <workItem from="1719599881965" duration="3882000" />
     </task>
     <task id="LOCAL-00001" summary="Headline changed">
       <option name="closed" value="true" />
@@ -125,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719601797227</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update">
+      <created>1719603358495</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1719603358495</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +155,7 @@
     <MESSAGE value="Testfiles deleted" />
     <MESSAGE value="integrate interface Country and function App" />
     <MESSAGE value="Länder alphabetisch sortiert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Länder alphabetisch sortiert" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
 </project>
