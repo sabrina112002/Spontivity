@@ -1,7 +1,13 @@
 import {Stack} from 'expo-router'
 export default function GeoGuideLayout(){
     return(
-        <Stack>
+        <Stack screenOptions={{
+            headerStyle:{
+                backgroundColor: 'blue',
+            },
+            headerTintColor: '#fff',
+
+        }}>
             <Stack.Screen name = "index" options={{
             headerTitle:"GeoGuide",
             title:"GeoGuide",}

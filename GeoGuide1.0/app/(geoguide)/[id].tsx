@@ -3,22 +3,28 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function GeoGuideDetail() {
-    const { cca3 } = useLocalSearchParams(); // Holen der Länderkennung aus den Parametern
+    const { cca3 } = useLocalSearchParams();
+    console.log("CCA3 Parameter:", cca3); // Protokollieren des CCA3-Parameters
+
     const [country, setCountry] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Daten für das ausgewählte Land abrufen
-        fetch(`https://restcountries.com/v3.1/alpha/${cca3}`)
-            .then(response => response.json())
-            .then(data => {
-                setCountry(data[0]); // API liefert ein Array zurück
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error(error);
-                setLoading(false);
-            });
+        if (cca3) {
+            fetch(`https://restcountries.com/v3.1/alpha/${cca3}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("API Response:", data); // Protokollieren der API-Antwort
+                    setCountry(data[0]);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error(error);
+                    setLoading(false);
+                });
+        } else {
+            setLoading(false);
+        }
     }, [cca3]);
 
     if (loading) {
@@ -37,11 +43,12 @@ export default function GeoGuideDetail() {
         );
     }
 
-    // Extrahieren der gewünschten Informationen
     const { name, capital, currencies, languages } = country;
-    const currencyNames = Object.values(currencies).map(currency => currency.name).join(', ');
-    const languageNames = Object.values(languages).join(', ');
+    // @ts-ignore
+    const currencyNames = currencies ? Object.values(currencies).map(currency => currency.name).join(', ') : 'Keine Währung';
+    const languageNames = languages ? Object.values(languages).join(', ') : 'Keine Sprache';
 
+    // @ts-ignore
     return (
         <View style={styles.container}>
             <Text style={styles.header}>{name.common}</Text>

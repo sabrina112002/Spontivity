@@ -1,6 +1,7 @@
 import {SplashScreen, Tabs} from "expo-router";
 import {useFonts} from "expo-font";
 import {useEffect} from "react";
+import {FontAwesome} from "@expo/vector-icons";
 
 SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
@@ -28,14 +29,26 @@ export default function RootLayout() {
 }
 function TabsLayout() {
     return (
-        <Tabs>
+        <Tabs screenOptions={{
+            headerStyle:{
+                backgroundColor: 'blue',
+            },
+            headerTintColor: '#fff',
+
+        }}>
             <Tabs.Screen name="(geoguide)" options={{
                 headerShown: false,
-                title: "GeoGuide"
+                title: "GeoGuide",
+                headerStyle:{
+                    backgroundColor: 'blue',
+                },
+                headerTintColor: '#fff',
+                tabBarIcon: ({color})=> <FontAwesome name="search" size={20} color={color}/>
             }}/>
             <Tabs.Screen name="profile" options={{
                 headerTitle: "Profile",
-                title: "Profile"
+                title: "Profile",
+                tabBarIcon: ({color})=> <FontAwesome name="heart" size={20} color={color}/>
             }}/>
         </Tabs>
     )

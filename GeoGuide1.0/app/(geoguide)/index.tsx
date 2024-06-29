@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Pressable, FlatList, ActivityIndicator} from 'react-native';
-import {router} from "expo-router";
+import React, { useEffect, useState } from 'react';
+import { View, Text, TextInput, StyleSheet, Pressable, FlatList, ActivityIndicator } from 'react-native';
+import { useRouter } from "expo-router";
 
 export default function HomePage() {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [search, setSearch] = useState('');
+    const router = useRouter();
 
     useEffect(() => {
-        // Fetch the countries data from the API
         fetch('https://restcountries.com/v3.1/all')
             .then(response => response.json())
             .then(data => {
-                // Sort the countries alphabetically by their common name
+                // @ts-ignore
                 const sortedCountries = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
                 setCountries(sortedCountries);
                 setLoading(false);
@@ -23,8 +24,16 @@ export default function HomePage() {
     }, []);
 
     // @ts-ignore
-    const renderItem = ({item}) => (
-        <Pressable onPress={() => router.push(`1`)}>
+    const filteredCountries = countries.filter(country =>
+        country.name.common.toLowerCase().includes(search.toLowerCase())
+    );
+
+    // @ts-ignore
+    const renderItem = ({ item }) => (
+        <Pressable onPress={() => {
+            console.log('Navigating to:', `/${item.cca3}`);
+            router.push(`/${item.cca3}`);
+        }}>
             <Text style={styles.countryName}>{item.name.common}</Text>
         </Pressable>
     );
@@ -40,8 +49,14 @@ export default function HomePage() {
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Countries List</Text>
+            <TextInput
+                style={styles.searchBar}
+                placeholder="Search for a country..."
+                value={search}
+                onChangeText={setSearch}
+            />
             <FlatList
-                data={countries}
+                data={filteredCountries}
                 keyExtractor={item => item.cca3}
                 renderItem={renderItem}
             />
@@ -59,6 +74,14 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 24,
         fontWeight: 'bold',
+        marginBottom: 16,
+    },
+    searchBar: {
+        width: '100%',
+        padding: 10,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 8,
         marginBottom: 16,
     },
     countryName: {
