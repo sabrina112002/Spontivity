@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Card, IconButton } from 'react-native-paper';
 
@@ -31,16 +31,23 @@ export default function ProfilePage() {
 
     const removeFavorite = async (cca3) => {
         try {
+            // Entfernen des Landes aus AsyncStorage
             const favorites = await AsyncStorage.getItem('favorites');
             if (favorites !== null) {
                 let favoriteCountries = JSON.parse(favorites);
                 favoriteCountries = favoriteCountries.filter(code => code !== cca3);
                 await AsyncStorage.setItem('favorites', JSON.stringify(favoriteCountries));
-                setFavoriteCountries(favoriteCountries); // Aktualisieren der Favoritenliste
+                // Lokales Aktualisieren der Favoritenliste ohne Neu laden
+                setFavoriteCountries(prevFavorites => prevFavorites.filter(country => country.cca3 !== cca3));
             }
         } catch (error) {
             console.error("Fehler beim Entfernen des Favoriten:", error);
         }
+    };
+
+    const refreshPage = () => {
+        setLoading(true);
+        loadFavorites();
     };
 
     if (loading) {
@@ -53,6 +60,9 @@ export default function ProfilePage() {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity style={styles.refreshButton} onPress={refreshPage}>
+                <Text style={styles.refreshButtonText}>Refresh</Text>
+            </TouchableOpacity>
             <FlatList
                 data={favoriteCountries}
                 keyExtractor={item => item.cca3}
@@ -91,6 +101,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 16,
         backgroundColor: '#f5f5f5',
+    },
+    refreshButton: {
+        backgroundColor: '#007bff',
+        padding: 10,
+        borderRadius: 8,
+        marginBottom: 16,
+    },
+    refreshButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     card: {
         width: '100%',

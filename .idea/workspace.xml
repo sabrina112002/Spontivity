@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c11c3d57-afcb-4a12-b38a-b599222a99f9" name="Changes" comment="Herzbutton und Cardlement integriert">
+    <list default="true" id="c11c3d57-afcb-4a12-b38a-b599222a99f9" name="Changes" comment="in profile anzeigen, liken, entfernen (funktioniert noch nicht)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/[id].tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GeoGuide1.0/app/profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/app/profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeoGuide1.0/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeoGuide1.0/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +60,7 @@
       <workItem from="1719307875491" duration="3854000" />
       <workItem from="1719599851685" duration="17000" />
       <workItem from="1719599881965" duration="3953000" />
-      <workItem from="1719815524597" duration="5405000" />
+      <workItem from="1719815524597" duration="5685000" />
     </task>
     <task id="LOCAL-00001" summary="Headline changed">
       <option name="closed" value="true" />
@@ -170,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1719819424488</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="in profile anzeigen, liken, entfernen (funktioniert noch nicht)">
+      <created>1719821302450</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1719821302450</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +203,7 @@
     <MESSAGE value="Länder alphabetisch sortiert" />
     <MESSAGE value="Herzbutton und carelement integriert" />
     <MESSAGE value="Herzbutton und Cardlement integriert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Herzbutton und Cardlement integriert" />
+    <MESSAGE value="in profile anzeigen, liken, entfernen (funktioniert noch nicht)" />
+    <option name="LAST_COMMIT_MESSAGE" value="in profile anzeigen, liken, entfernen (funktioniert noch nicht)" />
   </component>
 </project>
