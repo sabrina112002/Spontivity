@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Card, IconButton } from 'react-native-paper';
+
+const { width } = Dimensions.get('window');
+const cardWidth = width - 32; // Abzüglich des Padding
 
 export default function ProfilePage() {
     const [favoriteCountries, setFavoriteCountries] = useState([]);
@@ -71,7 +74,7 @@ export default function ProfilePage() {
                         return null; // oder alternative Anzeige für fehlende Daten
                     }
                     return (
-                        <Card style={styles.card}>
+                        <Card style={[styles.card, { width: cardWidth }]}>
                             <Card.Content>
                                 <Text style={styles.header}>{item.name.common}</Text>
                                 <Text>Capital: {item.capital ? item.capital[0] : 'Keine Hauptstadt'}</Text>
@@ -114,7 +117,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     card: {
-        width: '100%',
         padding: 16,
         backgroundColor: '#fff',
         borderRadius: 8,
