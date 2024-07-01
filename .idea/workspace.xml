@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c11c3d57-afcb-4a12-b38a-b599222a99f9" name="Changes" comment="Überarbeitung Detailseite - Daten werden nicht gefunden">
+    <list default="true" id="c11c3d57-afcb-4a12-b38a-b599222a99f9" name="Changes" comment="Länder alphabetisch sortiert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeoGuide1.0/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeoGuide1.0/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +62,7 @@
       <workItem from="1719307875491" duration="3854000" />
       <workItem from="1719599851685" duration="17000" />
       <workItem from="1719599881965" duration="3953000" />
-      <workItem from="1719815524597" duration="3080000" />
+      <workItem from="1719815524597" duration="3671000" />
     </task>
     <task id="LOCAL-00001" summary="Headline changed">
       <option name="closed" value="true" />
@@ -140,7 +141,21 @@
       <option name="project" value="LOCAL" />
       <updated>1719603929963</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Detailview is working">
+      <created>1719818851264</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719818851264</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Länder alphabetisch sortiert">
+      <created>1719818993461</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1719818993461</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,9 +178,10 @@
     <MESSAGE value="Test 2" />
     <MESSAGE value="Testfiles deleted" />
     <MESSAGE value="integrate interface Country and function App" />
-    <MESSAGE value="Länder alphabetisch sortiert" />
     <MESSAGE value="Update" />
     <MESSAGE value="Überarbeitung Detailseite - Daten werden nicht gefunden" />
-    <option name="LAST_COMMIT_MESSAGE" value="Überarbeitung Detailseite - Daten werden nicht gefunden" />
+    <MESSAGE value="Detailview is working" />
+    <MESSAGE value="Länder alphabetisch sortiert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Länder alphabetisch sortiert" />
   </component>
 </project>

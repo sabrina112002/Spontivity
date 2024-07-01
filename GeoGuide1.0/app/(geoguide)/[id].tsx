@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
+import { Card, IconButton } from 'react-native-paper';
 
 export default function GeoGuideDetail() {
     const { id: cca3 } = useLocalSearchParams();
@@ -8,6 +9,7 @@ export default function GeoGuideDetail() {
 
     const [country, setCountry] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isFavorite, setIsFavorite] = useState(false); // Zustand für das Favoriten-Icon
 
     useEffect(() => {
         if (cca3) {
@@ -52,12 +54,28 @@ export default function GeoGuideDetail() {
     const currencyNames = currencies ? Object.values(currencies).map(currency => currency.name).join(', ') : 'Keine Währung';
     const languageNames = languages ? Object.values(languages).join(', ') : 'Keine Sprache';
 
+    const toggleFavorite = () => {
+        setIsFavorite(!isFavorite);
+    };
+
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>{name.common}</Text>
-            <Text>Capital: {capital ? capital[0] : 'Keine Hauptstadt'}</Text>
-            <Text>Currency: {currencyNames}</Text>
-            <Text>Language(s): {languageNames}</Text>
+            <Card style={styles.card}>
+                <Card.Content>
+                    <Text style={styles.header}>{name.common}</Text>
+                    <Text>Capital: {capital ? capital[0] : 'Keine Hauptstadt'}</Text>
+                    <Text>Currency: {currencyNames}</Text>
+                    <Text>Language(s): {languageNames}</Text>
+                </Card.Content>
+                <Card.Actions>
+                    <IconButton
+                        icon={isFavorite ? "heart" : "heart-outline"}
+                        color={isFavorite ? "#f00" : "#000"}
+                        size={30}
+                        onPress={toggleFavorite}
+                    />
+                </Card.Actions>
+            </Card>
         </View>
     );
 }
@@ -68,6 +86,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
+        backgroundColor: '#f5f5f5',
+    },
+    card: {
+        width: '100%',
+        padding: 16,
+        backgroundColor: '#fff',
+        borderRadius: 8,
+        elevation: 4,
     },
     header: {
         fontSize: 24,
