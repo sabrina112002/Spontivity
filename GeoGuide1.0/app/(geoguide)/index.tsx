@@ -16,6 +16,8 @@ export default function App() {
                     name: country.name.common,
                     cca3: country.cca3,
                 }));
+                // alphabetic filter
+                countryList.sort((a, b) => a.name.localeCompare(b.name));
                 setCountries(countryList);
                 setLoading(false);
             })
