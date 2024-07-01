@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Card, IconButton } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function GeoGuideDetail() {
     const { id: cca3 } = useLocalSearchParams();
@@ -19,6 +20,7 @@ export default function GeoGuideDetail() {
                     console.log("API Response:", data); // Protokollieren der API-Antwort
                     if (data && data.length > 0) {
                         setCountry(data[0]);
+                        checkFavoriteStatus(data[0].cca3);
                     } else {
                         console.error("Keine Daten gefunden für CCA3:", cca3);
                     }
@@ -33,6 +35,36 @@ export default function GeoGuideDetail() {
             setLoading(false);
         }
     }, [cca3]);
+
+    const checkFavoriteStatus = async (cca3) => {
+        try {
+            const favorites = await AsyncStorage.getItem('favorites');
+            if (favorites) {
+                const favoriteCountries = JSON.parse(favorites);
+                setIsFavorite(favoriteCountries.includes(cca3));
+            }
+        } catch (error) {
+            console.error("Fehler beim Abrufen der Favoriten:", error);
+        }
+    };
+
+    const toggleFavorite = async () => {
+        try {
+            const favorites = await AsyncStorage.getItem('favorites');
+            let favoriteCountries = favorites ? JSON.parse(favorites) : [];
+
+            if (isFavorite) {
+                favoriteCountries = favoriteCountries.filter(code => code !== cca3);
+            } else {
+                favoriteCountries.push(cca3);
+            }
+
+            await AsyncStorage.setItem('favorites', JSON.stringify(favoriteCountries));
+            setIsFavorite(!isFavorite);
+        } catch (error) {
+            console.error("Fehler beim Speichern der Favoriten:", error);
+        }
+    };
 
     if (loading) {
         return (
@@ -53,10 +85,6 @@ export default function GeoGuideDetail() {
     const { name, capital, currencies, languages } = country;
     const currencyNames = currencies ? Object.values(currencies).map(currency => currency.name).join(', ') : 'Keine Währung';
     const languageNames = languages ? Object.values(languages).join(', ') : 'Keine Sprache';
-
-    const toggleFavorite = () => {
-        setIsFavorite(!isFavorite);
-    };
 
     return (
         <View style={styles.container}>

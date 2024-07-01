@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c11c3d57-afcb-4a12-b38a-b599222a99f9" name="Changes" comment="Länder alphabetisch sortiert">
+    <list default="true" id="c11c3d57-afcb-4a12-b38a-b599222a99f9" name="Changes" comment="Herzbutton und Cardlement integriert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/app/(geoguide)/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GeoGuide1.0/app/profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/app/profile.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GeoGuide1.0/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GeoGuide1.0/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/GeoGuide1.0/package.json" afterDir="false" />
     </list>
@@ -62,7 +63,7 @@
       <workItem from="1719307875491" duration="3854000" />
       <workItem from="1719599851685" duration="17000" />
       <workItem from="1719599881965" duration="3953000" />
-      <workItem from="1719815524597" duration="3671000" />
+      <workItem from="1719815524597" duration="5405000" />
     </task>
     <task id="LOCAL-00001" summary="Headline changed">
       <option name="closed" value="true" />
@@ -155,7 +156,21 @@
       <option name="project" value="LOCAL" />
       <updated>1719818993461</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Herzbutton und carelement integriert">
+      <created>1719819408869</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1719819408869</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Herzbutton und Cardlement integriert">
+      <created>1719819424488</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1719819424488</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +197,8 @@
     <MESSAGE value="Überarbeitung Detailseite - Daten werden nicht gefunden" />
     <MESSAGE value="Detailview is working" />
     <MESSAGE value="Länder alphabetisch sortiert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Länder alphabetisch sortiert" />
+    <MESSAGE value="Herzbutton und carelement integriert" />
+    <MESSAGE value="Herzbutton und Cardlement integriert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Herzbutton und Cardlement integriert" />
   </component>
 </project>
