@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Card, IconButton } from 'react-native-paper';
 
 const { width } = Dimensions.get('window');
-const cardWidth = width - 32; // Abzüglich des Padding
+const cardWidth = width - 30; // Abzüglich des Padding
 
 export default function ProfilePage() {
     const [favoriteCountries, setFavoriteCountries] = useState([]);
@@ -77,9 +77,9 @@ export default function ProfilePage() {
                         <Card style={[styles.card, { width: cardWidth }]}>
                             <Card.Content>
                                 <Text style={styles.header}>{item.name.common}</Text>
-                                <Text>Capital: {item.capital ? item.capital[0] : 'Keine Hauptstadt'}</Text>
-                                <Text>Currency: {Object.values(item.currencies).map(currency => currency.name).join(', ')}</Text>
-                                <Text>Language(s): {Object.values(item.languages).join(', ')}</Text>
+                                <Text style={styles.value}>Capital: {item.capital ? item.capital[0] : 'Keine Hauptstadt'}</Text>
+                                <Text style={styles.value}>Currency: {Object.values(item.currencies).map(currency => currency.name).join(', ')}</Text>
+                                <Text style={styles.value}>Language(s): {Object.values(item.languages).join(', ')}</Text>
                             </Card.Content>
                             <Card.Actions>
                                 <IconButton
@@ -99,14 +99,14 @@ export default function ProfilePage() {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: '#f0f8ff',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
-        backgroundColor: '#f5f5f5',
     },
     refreshButton: {
-        backgroundColor: '#007bff',
+        backgroundColor: 'blue',
         padding: 10,
         borderRadius: 8,
         marginBottom: 16,
@@ -128,4 +128,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 8,
     },
+    value: {
+        fontSize: 18,
+    },
+
+
 });

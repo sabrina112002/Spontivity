@@ -46,8 +46,8 @@ function TabsLayout() {
                 tabBarIcon: ({color})=> <FontAwesome name="search" size={20} color={color}/>
             }}/>
             <Tabs.Screen name="profile" options={{
-                headerTitle: "Profile",
-                title: "Profile",
+                headerTitle: "Favorites",
+                title: "Favorites",
                 tabBarIcon: ({color})=> <FontAwesome name="heart" size={20} color={color}/>
             }}/>
         </Tabs>

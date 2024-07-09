@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Card, IconButton } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -68,8 +68,9 @@ export default function GeoGuideDetail() {
 
     if (loading) {
         return (
-            <View style={styles.container}>
-                <Text>Lädt...</Text>
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#007bff" />
+                <Text style={styles.loadingText}>Lädt...</Text>
             </View>
         );
     }
@@ -77,7 +78,7 @@ export default function GeoGuideDetail() {
     if (!country) {
         return (
             <View style={styles.container}>
-                <Text>Keine Daten gefunden</Text>
+                <Text style={styles.errorText}>Keine Daten gefunden</Text>
             </View>
         );
     }
@@ -89,11 +90,22 @@ export default function GeoGuideDetail() {
     return (
         <View style={styles.container}>
             <Card style={styles.card}>
-                <Card.Content>
+                <View style={styles.headerContainer}>
                     <Text style={styles.header}>{name.common}</Text>
-                    <Text>Capital: {capital ? capital[0] : 'Keine Hauptstadt'}</Text>
-                    <Text>Currency: {currencyNames}</Text>
-                    <Text>Language(s): {languageNames}</Text>
+                </View>
+                <Card.Content>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.label}>Capital:</Text>
+                        <Text style={styles.value}>{capital ? capital[0] : 'Keine Hauptstadt'}</Text>
+                    </View>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.label}>Currency:</Text>
+                        <Text style={styles.value}>{currencyNames}</Text>
+                    </View>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.label}>Language(s):</Text>
+                        <Text style={styles.value}>{languageNames}</Text>
+                    </View>
                 </Card.Content>
                 <Card.Actions>
                     <IconButton
@@ -114,18 +126,59 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#f0f8ff',
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f0f8ff',
+    },
+    loadingText: {
+        marginTop: 10,
+        fontSize: 18,
+        color: '#007bff',
+    },
+    errorText: {
+        fontSize: 18,
+        color: '#ff0000',
     },
     card: {
-        width: '100%',
+        width: '90%',
         padding: 16,
         backgroundColor: '#fff',
-        borderRadius: 8,
-        elevation: 4,
+        borderRadius: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 10,
+    },
+    headerContainer: {
+        backgroundColor: 'blue',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
     },
     header: {
-        fontSize: 24,
+        fontSize: 35,
         fontWeight: 'bold',
-        marginBottom: 16,
+        color: '#fff',
+        textAlign: 'center',
+    },
+    infoContainer: {
+        flexDirection: 'row',
+        marginVertical: 8,
+        marginTop: 20,
+    },
+    label: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#555',
+        flex: 2,
+    },
+    value: {
+        fontSize: 18,
+        color: '#000',
+        flex: 2,
     },
 });
