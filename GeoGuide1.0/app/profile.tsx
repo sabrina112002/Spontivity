@@ -7,53 +7,67 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 const { width } = Dimensions.get('window');
 const cardWidth = width - 30; // Abzüglich des Padding
 
+// Definieren und Exportieren der Hauptkomponente der Seite
 export default function ProfilePage() {
     const [favoriteCountries, setFavoriteCountries] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // useEffect-Hook, der beim ersten Rendern der Komponente ausgeführt wird
     useEffect(() => {
-        loadFavorites();
+        loadFavorites(); // Lädt die Favoriten aus dem AsyncStorage
     }, []);
 
+
+    // Funktion zum Laden der Favoriten aus dem AsyncStorage
     const loadFavorites = async () => {
         try {
+            // Abrufen der gespeicherten Favoriten
             const favorites = await AsyncStorage.getItem('favorites');
             if (favorites !== null) {
+                // Parsen der JSON-Daten
                 const favoriteCodes = JSON.parse(favorites);
+                // Abrufen der Länderinformationen von der REST Countries API
                 const countryPromises = favoriteCodes.map(code =>
                     fetch(`https://restcountries.com/v3.1/alpha/${code}`).then(response => response.json())
                 );
                 const countries = await Promise.all(countryPromises);
+                // Aktualisieren des Zustands mit den abgerufenen Länderinformationen
                 setFavoriteCountries(countries.map(country => country[0])); // Flattening the response structure
             }
         } catch (error) {
-            console.error("Fehler beim Laden der Favoriten:", error);
+            console.error("Fehler beim Laden der Favoriten:", error); //Fehlerbehandlung
         } finally {
-            setLoading(false);
+            setLoading(false); // Deaktivieren des Ladezustands
         }
     };
 
+    // Funktion zum Entfernen eines Favoriten aus der Liste
     const removeFavorite = async (cca3) => {
         try {
-            // Entfernen des Landes aus AsyncStorage
+            // Abrufen der gespeicherten Favoriten
             const favorites = await AsyncStorage.getItem('favorites');
             if (favorites !== null) {
+                // Parsen der JSON-Daten
                 let favoriteCountries = JSON.parse(favorites);
+                // Filtern der Favoritenliste und Entfernen des ausgewählten Landes
                 favoriteCountries = favoriteCountries.filter(code => code !== cca3);
+                // Speichern der aktualisierten Favoritenliste
                 await AsyncStorage.setItem('favorites', JSON.stringify(favoriteCountries));
                 // Lokales Aktualisieren der Favoritenliste ohne Neu laden
                 setFavoriteCountries(prevFavorites => prevFavorites.filter(country => country.cca3 !== cca3));
             }
         } catch (error) {
-            console.error("Fehler beim Entfernen des Favoriten:", error);
+            console.error("Fehler beim Entfernen des Favoriten:", error); //Fehlerbehandlung
         }
     };
 
+    // Funktion zum Neuladen der Favoritenliste
     const refreshPage = () => {
-        setLoading(true);
-        loadFavorites();
+        setLoading(true); // Aktivieren des Ladezustands
+        loadFavorites(); // Erneutes Laden der Favoriten
     };
 
+    // Wenn der Ladezustand aktiv ist, wird ein Ladeindikator angezeigt
     if (loading) {
         return (
             <View style={styles.container}>
@@ -63,6 +77,7 @@ export default function ProfilePage() {
         );
     }
 
+    // Hauptinhalt der Komponente
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.refreshButton} onPress={refreshPage}>
@@ -75,6 +90,8 @@ export default function ProfilePage() {
                     if (!item || !item.name || !item.name.common) {
                         return null; // oder alternative Anzeige für fehlende Daten
                     }
+                    // @ts-ignore
+                    // @ts-ignore
                     return (
                         <Card style={[styles.card, { width: cardWidth }]}>
                             <Card.Content>

@@ -5,6 +5,7 @@ import { Card, IconButton } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+// Hauptkomponente der Detailansicht
 export default function GeoGuideDetail() {
     const { id: cca3 } = useLocalSearchParams();
     console.log("CCA3 Parameter:", cca3); // Protokollieren des CCA3-Parameters
@@ -37,6 +38,7 @@ export default function GeoGuideDetail() {
         }
     }, [cca3]);
 
+    // Funktion zur Überprüfung, ob das Land in den Favoriten ist
     const checkFavoriteStatus = async (cca3) => {
         try {
             const favorites = await AsyncStorage.getItem('favorites');
@@ -49,6 +51,7 @@ export default function GeoGuideDetail() {
         }
     };
 
+    // Funktion zum Hinzufügen oder Entfernen eines Landes aus den Favoriten
     const toggleFavorite = async () => {
         try {
             const favorites = await AsyncStorage.getItem('favorites');
@@ -76,6 +79,7 @@ export default function GeoGuideDetail() {
         );
     }
 
+    // Bedingtes Rendering, wenn keine Daten gefunden wurden
     if (!country) {
         return (
             <View style={styles.container}>
@@ -84,10 +88,12 @@ export default function GeoGuideDetail() {
         );
     }
 
+    // Extrahieren der relevanten Informationen aus den Länderdaten
     const { name, capital, currencies, languages } = country;
     const currencyNames = currencies ? Object.values(currencies).map(currency => currency.name).join(', ') : 'Keine Währung';
     const languageNames = languages ? Object.values(languages).join(', ') : 'Keine Sprache';
 
+    // Hauptinhalt der Komponente
     return (
         <View style={styles.container}>
             <Card style={styles.card}>

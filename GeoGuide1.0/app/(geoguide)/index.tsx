@@ -10,6 +10,7 @@ export default function App() {
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 
+    // useEffect Hook zum Abrufen der Länderdaten beim ersten Rendern der Komponente
     useEffect(() => {
         fetch('https://restcountries.com/v3.1/all')
             .then(response => response.json())
@@ -18,7 +19,7 @@ export default function App() {
                     name: country.name.common,
                     cca3: country.cca3,
                 }));
-                // alphabetic filter
+                // Alphabetische Sortierung der Länder
                 countryList.sort((a, b) => a.name.localeCompare(b.name));
                 setCountries(countryList);
                 setFilteredCountries(countryList);
@@ -26,16 +27,17 @@ export default function App() {
             })
             .catch(error => {
                 console.error("Fehler beim Abrufen der Länder:", error);
-                setLoading(false);
+                setLoading(false); // Deaktivieren des Ladezustands auch bei Fehlern
             });
     }, []);
 
+    // Funktion zur Filterung der Länder basierend auf der Suchanfrage
     const handleSearch = (query) => {
-        setSearchQuery(query);
+        setSearchQuery(query); // Aktualisieren der Suchanfrage
         const filtered = countries.filter(country =>
             country.name.toLowerCase().includes(query.toLowerCase())
         );
-        setFilteredCountries(filtered);
+        setFilteredCountries(filtered); // Aktualisieren der gefilterten Länder
     };
 
     if (loading) {
@@ -48,6 +50,7 @@ export default function App() {
         );
     }
 
+    // Hauptinhalt der Komponente
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Countries:</Text>

@@ -21,12 +21,14 @@ export default function RootLayout() {
         }
     }, [loaded]);
 
+    // Wenn die Schriftarten noch nicht geladen sind, wird nichts angezeigt
     if (!loaded) {
         return null;
     }
 
     return <TabsLayout />;
 }
+// Funktion zur Definition der Tabs
 function TabsLayout() {
     return (
         <Tabs screenOptions={{
