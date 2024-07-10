@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { Card, IconButton } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default function GeoGuideDetail() {
     const { id: cca3 } = useLocalSearchParams();
@@ -94,15 +95,18 @@ export default function GeoGuideDetail() {
                     <Text style={styles.header}>{name.common}</Text>
                 </View>
                 <Card.Content>
-                    <View style={styles.infoContainer}>
+                    <View style={styles.infoItem}>
+                        <Icon name="location-city" size={24} color="#555" style={styles.icon} />
                         <Text style={styles.label}>Capital:</Text>
                         <Text style={styles.value}>{capital ? capital[0] : 'Keine Hauptstadt'}</Text>
                     </View>
-                    <View style={styles.infoContainer}>
+                    <View style={styles.infoItem}>
+                        <Icon name="attach-money" size={24} color="#555" style={styles.icon} />
                         <Text style={styles.label}>Currency:</Text>
                         <Text style={styles.value}>{currencyNames}</Text>
                     </View>
-                    <View style={styles.infoContainer}>
+                    <View style={styles.infoItem}>
+                        <Icon name="language" size={24} color="#555" style={styles.icon} />
                         <Text style={styles.label}>Language(s):</Text>
                         <Text style={styles.value}>{languageNames}</Text>
                     </View>
@@ -144,7 +148,7 @@ const styles = StyleSheet.create({
         color: '#ff0000',
     },
     card: {
-        width: '90%',
+        width: '95%',
         padding: 16,
         backgroundColor: '#fff',
         borderRadius: 15,
@@ -165,20 +169,23 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
     },
-    infoContainer: {
+    infoItem: {
         flexDirection: 'row',
-        marginVertical: 8,
-        marginTop: 20,
+        alignItems: 'center',
+        marginVertical: 25, // Increase vertical margin for more space between rows
+    },
+    icon: {
+        marginRight: 10,
     },
     label: {
         fontSize: 18,
         fontWeight: '600',
         color: '#555',
-        flex: 2,
+        flex: 2, // Make label take up more space
     },
     value: {
         fontSize: 18,
         color: '#000',
-        flex: 2,
+        flex: 2, // Make value take up more space
     },
 });

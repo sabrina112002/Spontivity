@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Card, IconButton } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const { width } = Dimensions.get('window');
 const cardWidth = width - 30; // Abzüglich des Padding
@@ -56,7 +57,8 @@ export default function ProfilePage() {
     if (loading) {
         return (
             <View style={styles.container}>
-                <Text>Lädt...</Text>
+                <ActivityIndicator size="large" color="#007bff" />
+                <Text style={styles.loadingText}>Lädt...</Text>
             </View>
         );
     }
@@ -77,9 +79,18 @@ export default function ProfilePage() {
                         <Card style={[styles.card, { width: cardWidth }]}>
                             <Card.Content>
                                 <Text style={styles.header}>{item.name.common}</Text>
-                                <Text style={styles.value}>Capital: {item.capital ? item.capital[0] : 'Keine Hauptstadt'}</Text>
-                                <Text style={styles.value}>Currency: {Object.values(item.currencies).map(currency => currency.name).join(', ')}</Text>
-                                <Text style={styles.value}>Language(s): {Object.values(item.languages).join(', ')}</Text>
+                                <View style={styles.infoItem}>
+                                    <Icon name="location-city" size={24} color="#555" style={styles.icon} />
+                                    <Text style={styles.value}>Capital: {item.capital ? item.capital[0] : 'Keine Hauptstadt'}</Text>
+                                </View>
+                                <View style={styles.infoItem}>
+                                    <Icon name="attach-money" size={24} color="#555" style={styles.icon} />
+                                    <Text style={styles.value}>Currency: {Object.values(item.currencies).map(currency => currency.name).join(', ')}</Text>
+                                </View>
+                                <View style={styles.infoItem}>
+                                    <Icon name="language" size={24} color="#555" style={styles.icon} />
+                                    <Text style={styles.value}>Language(s): {Object.values(item.languages).join(', ')}</Text>
+                                </View>
                             </Card.Content>
                             <Card.Actions>
                                 <IconButton
@@ -116,6 +127,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    loadingText: {
+        marginTop: 10,
+        fontSize: 18,
+        color: '#007bff',
+    },
     card: {
         padding: 16,
         backgroundColor: '#fff',
@@ -128,9 +144,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 8,
     },
+    infoItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 8,
+    },
+    icon: {
+        marginRight: 10,
+    },
     value: {
         fontSize: 18,
     },
-
-
 });
